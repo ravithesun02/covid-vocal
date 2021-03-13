@@ -31,7 +31,12 @@
     "react-hot-loader": "4.12.20",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "twilio": "^3.56.0"
+    "twilio": "^3.56.0",
+    "webpack": "4.42.1",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-middleware": "3.7.2",
+    "webpack-hot-middleware": "2.25.0",
+    "webpack-node-externals": "1.7.2"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
@@ -40,11 +45,7 @@
     "@babel/preset-react": "7.9.4",
     "babel-loader": "8.1.0",
     "file-loader": "^6.1.0",
-    "nodemon": "2.0.2",
-    "webpack": "4.42.1",
-    "webpack-cli": "3.3.11",
-    "webpack-dev-middleware": "3.7.2",
-    "webpack-hot-middleware": "2.25.0",
-    "webpack-node-externals": "1.7.2"
+    "nodemon": "2.0.2"
   }
+  
 }
