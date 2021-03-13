@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "webpack --config webpack.config.client.production.js && webpack --mode=production --config webpack.config.server.js",
-    "start": "NODE_ENV=production node ./dist/server.generated.js"
+    "start": "NODE_ENV=production node ./public/server.generated.js"
   },
   "dependencies": {
     "@hot-loader/react-dom": "16.13.0",

@@ -14,7 +14,7 @@ export default ({markup,css})=>{
     ${markup}
     </div>
     <style id="jss-server-side">${css}</style>
-    <script type="text/javascript" src="/dist/bundle.js">
+    <script type="text/javascript" src="/public/bundle.js">
     </script>
     </body>
     </html>`
