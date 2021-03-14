@@ -63,7 +63,13 @@ class Home extends Component {
             this.setState({
                 isLoggedIn:false
             })
-    }   
+    }  
+    
+    logout=()=>{
+        this.setState({
+            isLoggedIn:false
+        });
+    }
 
 
 
@@ -77,7 +83,7 @@ class Home extends Component {
             <div className={classes.root}>
                 <Grid direction="column" className={classes.mainGrid} container>
                     <Grid item>
-                        <Header/>
+                        <Header logout={this.logout}/>
                     </Grid>
                     <Grid direction="column"  item container className={classes.midGrid}>
 

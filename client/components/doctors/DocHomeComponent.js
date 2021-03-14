@@ -120,6 +120,12 @@ class DocHome extends Component {
       
     }
 
+    logout=()=>{
+        this.setState({
+            isLoggedIn:false
+        });
+    }
+
 
     render() {
         const {classes}=this.props;
@@ -134,7 +140,7 @@ class DocHome extends Component {
             <div className={classes.root}>
                 <Grid direction="column" className={classes.mainGrid} container>
                     <Grid item>
-                        <Header/>
+                        <Header logout={this.logout}/>
                     </Grid>
                     <Grid direction="column"  item container className={classes.midGrid}>
                         <TableContainer>

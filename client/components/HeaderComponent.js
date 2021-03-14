@@ -20,6 +20,11 @@ const useStyles =theme=>({
 
 class Header extends Component {
 
+    constructor(props)
+    {
+        super(props);
+    }
+
     signOut=()=>{
 
         
@@ -36,6 +41,8 @@ class Header extends Component {
             auth.clearJWT('doc_jwt',()=>{
                 console.log('signed out');
             })
+
+            this.props.logout();
         }
 
     }

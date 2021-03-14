@@ -44,8 +44,8 @@
     "@babel/preset-env": "7.9.0",
     "@babel/preset-react": "7.9.4",
     "babel-loader": "8.1.0",
+    "dotenv-webpack": "6.0.4",
     "file-loader": "^6.1.0",
     "nodemon": "2.0.2"
   }
-  
 }
