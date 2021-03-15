@@ -5,7 +5,9 @@ const config={
     mongoUri:process.env.MONGODB_URI || process.env.MONGO_HOST|| 'mongodb://'+(process.env.IP || 'localhost')+ ':'+(process.env.MONGO_PORT ||'27017')+'/vocalcovid',
     serviceID:process.env.serviceID,
     accountSID:process.env.accountSID,
-    authToken:process.env.authToken
+    authToken:process.env.authToken,
+    emailFrom:"ravi.kumar8927395664@gmail.com",
+    password:"Ravi@8927"
 }
 
 export default config;

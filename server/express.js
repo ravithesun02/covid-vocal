@@ -10,6 +10,8 @@ import Template from './../template';
 import predictRouter from './routes/predict.routes';
 import authRouter from './routes/auth.routes';
 import docRouter from './routes/doctors.routes';
+import userRouter from './routes/user.routes';
+import adminRouter from './routes/admin.routes';
 
 //FOR SERVER SIDE RENDERING
 // 1.The following modules are required to render the React components and use renderToString :
@@ -52,6 +54,8 @@ app.use('/public', express.static(path.join(CURRENT_WORKING_DIR, 'public')))
 app.use('/api',predictRouter);
 app.use('/api/auth',authRouter);
 app.use('/api/doc',docRouter);
+app.use('/api/v1',userRouter);
+app.use('/api/admin',adminRouter);
 
 
 app.get('*',(req,res)=>{

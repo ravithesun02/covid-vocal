@@ -4,6 +4,7 @@ import config from '../../config/config';
 import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
 import Doctor from '../models/doctor.model';
+import Admin from '../models/admin.model';
 
 
 const client=require('twilio')(config.accountSID,config.authToken);
@@ -31,10 +32,10 @@ const generateOTP=async(req,res)=>{
 };
 
 const verifyOTP=(req,res,next)=>{
-    let phone=req.params.phone;
+    let phone=req.body.phone;
     client.verify.services(config.serviceID).verificationChecks.create({
         to:phone,
-        code:req.params.code
+        code:req.body.code
     })
     .then((data)=>{
         console.log(data);
@@ -123,4 +124,27 @@ const siginDoctor=async(req,res)=>{
 
 }
 
-export default {generateOTP,verifyOTP,sigin,requireSignin,hasAuthrization,siginDoctor};
+const signinAdmin=async(req,res)=>{
+    try{
+        let admin=await Admin.findOne({username:req.body.username});
+        if(!admin)
+            return res.status('401').json({error:'Your entry not found ! Please contact Admin'});
+        if(!admin.authenticate(req.body.password))
+        return res.status('401').json({error:'Incorrect Password'});
+
+        const token=jwt.sign({_id:admin._id},config.jwtSecret);
+        res.cookie('t',token,{expire:new Date()+9999});
+
+        return res.status('200').json({
+            id:admin._id,
+            token:token
+        });
+        
+    }
+    catch(err)
+    {
+
+    }
+}
+
+export default {generateOTP,verifyOTP,sigin,requireSignin,hasAuthrization,siginDoctor,signinAdmin};
