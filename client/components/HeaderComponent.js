@@ -63,9 +63,11 @@ class Header extends Component {
                             <Typography variant="h5">Covid Voice Detector</Typography>
                             </Grid>
                             <Grid xs={1} md={3} item>
-                              { (localStorage.getItem('jwt') || localStorage.getItem('doc_jwt')) &&  <IconButton color="primary" onClick={this.signOut}>
+                              { (localStorage.getItem('jwt') || localStorage.getItem('doc_jwt')) && 
+                               <IconButton color="primary" onClick={this.signOut}>
                                     <ExitToAppIcon/>
-                                </IconButton>}
+                                </IconButton>
+                                }
                             </Grid>
                         </Grid>
 

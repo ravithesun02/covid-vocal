@@ -1,6 +1,6 @@
+import {hot} from 'react-hot-loader';
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import {hot} from 'react-hot-loader';
 import MainRouter from './components/MainRouterComponent';
 
 

@@ -6,6 +6,10 @@ import Login from './LoginComponent';
 import DocLogin from './doctors/DocLoginComponent';
 import DocHome from './doctors/DocHomeComponent';
 import DocPrivateRoute from '../reusable/DocPrivateROute';
+import UserInputComponent from './auth/UserInputComponent';
+import UserStatus from './auth/UserStatusComponent';
+import UserError from './auth/UserErrorComponent';
+import UserVerifiedComponent from './auth/UserVerifiedComponent';
 
 
 class MainRouter extends Component{
@@ -19,6 +23,10 @@ class MainRouter extends Component{
                 <PrivateRoute path="/home" component={HomeComponent}/>
                 <Route path="/doc" component={DocLogin}/>
                 <DocPrivateRoute path="/doc_home" component={DocHome}/>
+                <Route exact path="/request" component={UserInputComponent}/>
+                <Route exact path="/status" component={UserStatus}/>
+                <Route exact path="/error" component={UserError}/>
+                <Route exact path="/verified" component={UserVerifiedComponent}/>
             </Switch>
             </div>
         )
