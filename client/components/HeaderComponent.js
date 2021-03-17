@@ -41,7 +41,10 @@ class Header extends Component {
             auth.clearJWT('doc_jwt',()=>{
                 console.log('signed out');
             })
-
+            else if(pathname==="/admin_home")
+            auth.clearJWT('admin_jwt',()=>{
+                console.log('signed out');
+            })
             this.props.logout();
         }
 
@@ -63,7 +66,7 @@ class Header extends Component {
                             <Typography variant="h5">Covid Voice Detector</Typography>
                             </Grid>
                             <Grid xs={1} md={3} item>
-                              { (localStorage.getItem('jwt') || localStorage.getItem('doc_jwt')) && 
+                              { (localStorage.getItem('jwt') || localStorage.getItem('doc_jwt') || localStorage.getItem('admin_jwt')) && 
                                <IconButton color="primary" onClick={this.signOut}>
                                     <ExitToAppIcon/>
                                 </IconButton>

@@ -3,15 +3,15 @@ import React , {Component} from 'react';
 import {Route,Redirect} from 'react-router-dom';
 import auth from '../api/auth-helper';
 
-const DocPrivateRoute=({component:Component,...rest})=>{
+const AdminPrivateRoute=({component:Component,...rest})=>{
 
     return (
         <Route {...rest} render={props=>(
-            auth.isDocAuthenticated()?(
+            auth.isAdminAuthenticated()?(
                 <Component {...props}/>
             ):(
                 <Redirect to={{
-                    pathname:'/doc',
+                    pathname:'/admin',
                     state:{from:props.location}
                 }}/>
             )
@@ -21,4 +21,4 @@ const DocPrivateRoute=({component:Component,...rest})=>{
     )
 }
 
-export default DocPrivateRoute;
+export default AdminPrivateRoute;

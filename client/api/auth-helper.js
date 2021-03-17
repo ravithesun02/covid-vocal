@@ -32,6 +32,15 @@ const auth={
         return JSON.parse(localStorage.getItem('doc_jwt'));
     else
         return false;
+    },
+    isAdminAuthenticated()
+    {
+        if(typeof window == 'undefined')
+        return false;
+    if(localStorage.getItem('admin_jwt'))
+        return JSON.parse(localStorage.getItem('admin_jwt'));
+    else
+        return false;
     }
 
 }

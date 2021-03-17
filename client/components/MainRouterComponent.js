@@ -10,6 +10,9 @@ import UserInputComponent from './auth/UserInputComponent';
 import UserStatus from './auth/UserStatusComponent';
 import UserError from './auth/UserErrorComponent';
 import UserVerifiedComponent from './auth/UserVerifiedComponent';
+import AdminLoginComponent from './admin/AdminLoginComponent';
+import AdminPrivateRoute from '../reusable/AdminPrivateRoute';
+import AdminHome from './admin/AdminHomePage';
 
 
 class MainRouter extends Component{
@@ -27,6 +30,8 @@ class MainRouter extends Component{
                 <Route exact path="/status" component={UserStatus}/>
                 <Route exact path="/error" component={UserError}/>
                 <Route exact path="/verified" component={UserVerifiedComponent}/>
+                <Route exact path="/admin" component={AdminLoginComponent}/>
+                <AdminPrivateRoute exact path="/admin_home" component={AdminHome}/>
             </Switch>
             </div>
         )
