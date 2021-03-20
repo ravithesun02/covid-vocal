@@ -8,7 +8,8 @@ class UserError extends React.Component{
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <Typography variant="h4">
-                    Your Data is submitted . You will receive a mail as soon as You are verified from our end.
+                    You are not authorized to access this website.OR 
+                    <span style={{color:'red'}}> Connect to the same network You used for genrating the request. </span>
                 </Typography>
 
             </Container>

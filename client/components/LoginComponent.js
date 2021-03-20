@@ -13,6 +13,8 @@ import Otp from './Otp';
 import {generateOTP,verifyOTP} from '../api/api-auth';
 import auth from '../api/auth-helper';
 import { Link, Redirect } from 'react-router-dom';
+import {getIP} from '../api/ip-getter';
+
 
 function isNumeric(n) {
     return !isNaN(parseInt(n)) && isFinite(n);
@@ -26,12 +28,15 @@ export default class Login extends React.Component {
             pno: '',
             otpShow: false,
             otp: '',
-            loggedIn:false
+            loggedIn:false,
+            redirectTo:null
         };
     }
 
     async componentDidMount()
     {
+        
+
         if(auth.isAuthenticated())
             this.setState({
                 loggedIn:true
@@ -55,19 +60,18 @@ export default class Login extends React.Component {
     _verifyCode = async () => {
         const e = this.state.code+this.state.pno;
         const otp=this.state.otp;
-
-        let response=await verifyOTP(e,otp);
-
+        localStorage.setItem('route','login');
+        localStorage.setItem('phone',e);
+        let ip=await getIP();
+        let response=await verifyOTP({phone:e,code:otp,ip:ip});
         if(response.ok)
         {
             console.log(response);//show alert
             let res=await response.json();
 
-            auth.authenticate(res.token,'jwt',()=>{
-                this.setState({
-                    loggedIn:true
-                });
-            });
+           await this.setState({
+               redirectTo:res.redirect
+           })
 
         }
         else
@@ -83,6 +87,12 @@ export default class Login extends React.Component {
             return(
                 <Redirect to="/home"/>
             );
+        if(this.state.redirectTo)
+        {
+            return(
+                <Redirect to={`/${this.state.redirectTo}`}/>
+            )
+        }
 
 
         return(

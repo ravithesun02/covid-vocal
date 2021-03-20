@@ -10,4 +10,7 @@ router.route('/login/:phone')
 router.route('/login/verify')
 .post(authCtrl.verifyOTP,userCtrl.checkUser);
 
+router.route('/checkIP')
+.post(authCtrl.requireSignin,authCtrl.hasAuthrization,authCtrl.checkIP)
+
 export default router;

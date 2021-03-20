@@ -42,10 +42,10 @@ devBundle.compile(app)
 // parse body params and attache them to req.body
 app.use(express.json({limit: '50mb'}))
 app.use(express.urlencoded({ limit:'50mb', extended: false }))
-app.use(cookieParser())
-app.use(compress())
-// secure apps by setting various HTTP headers
-app.use(helmet())
+// app.use(cookieParser())
+// app.use(compress())
+// // secure apps by setting various HTTP headers
+// app.use(helmet());
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors())
 

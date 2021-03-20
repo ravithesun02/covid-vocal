@@ -27,6 +27,7 @@
     "mongodb": "3.5.5",
     "mongoose": "^5.10.7",
     "nodemailer": "^6.5.0",
+    "public-ip": "^4.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hot-loader": "4.12.20",

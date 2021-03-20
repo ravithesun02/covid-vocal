@@ -56,6 +56,9 @@ class Name extends React.Component {
     }
 
   handleChange=name=>event=>{
+
+   // this.props.checkIP();
+
       console.log(event.target.value);
       this.setState({
           formdata:{

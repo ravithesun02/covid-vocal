@@ -6,10 +6,10 @@ import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { withStyles } from '@material-ui/core';
+import { withStyles , Backdrop } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import {uploadUserData} from '../../api/api-authuser';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles =theme=>({
     paper: {
         marginTop: theme.spacing(8),
@@ -27,7 +27,11 @@ const useStyles =theme=>({
       },
       submit: {
         margin: theme.spacing(3, 0, 2),
-      }
+      },
+      backdrop: {
+          zIndex:  100,
+          color: '#fff',
+        }
     
 });
 
@@ -43,9 +47,16 @@ class UserInput extends Component{
         }
     }
 
-    componentDidMount()
+   async componentDidMount()
     {
-        console.log(this.props);
+        if(localStorage.getItem('route')==='login')
+          {
+            
+          }
+          else
+          await this.setState({
+            redirectTo:''
+          });
     }
 
     handleSubmit=name=>event=>{
@@ -57,7 +68,7 @@ class UserInput extends Component{
 
     uploadData=async(event)=>{
         event.preventDefault();
-
+        localStorage.setItem('route','request');
         await this.setState({
             isLoading:true
         });
@@ -81,6 +92,7 @@ class UserInput extends Component{
         }
         else
             console.log(await response.json());
+      localStorage.removeItem('phone');
     }
 
     render()
@@ -131,13 +143,16 @@ class UserInput extends Component{
             fullWidth
             variant="contained"
             color="primary"
-           
+           onClick={this.uploadData}
             className={classes.submit}
           >
            Send Request
           </Button>
         </form>
       </div>
+      <Backdrop className={classes.backdrop} open={this.state.isLoading}>
+                        <CircularProgress/>
+                    </Backdrop>
     </Container>
         )
     }

@@ -4,9 +4,11 @@ import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
 import Name from "./questions/FormComponent";
-import { Switch } from '@material-ui/core';
+import { Switch , Backdrop } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
-
+import {checkIP} from '../api/api-auth';
+import {getIP} from '../api/ip-getter';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -30,7 +32,11 @@ const useStyles =theme=>({
     },
     accordion:{
         marginTop:'1%'
-    }
+    },
+    backdrop: {
+        zIndex:  100,
+        color: '#fff',
+      }
     
 });
 
@@ -41,12 +47,16 @@ class Home extends Component {
         super(props);
         this.state={
             questionGrid:true,
-            isLoggedIn:true
+            isLoggedIn:true,
+            isLoading:false
         }
     }
 
-    componentDidMount()
+    async componentDidMount()
     {
+        
+        
+
         if(typeof window !== 'undefined')
         {
             window.addEventListener('storage',this.checkSignIn);
@@ -71,6 +81,32 @@ class Home extends Component {
         });
     }
 
+    checkIP=async()=>{
+        
+        await this.setState({
+            isLoading:true
+        })
+
+        let ip= await getIP();
+        console.log(ip)
+        let data= {
+            ip:ip
+        }
+        let res=await checkIP(data)
+        if(res.ok){
+            let resData=await res.json();
+            if(!resData.isVerified)
+            {
+                localStorage.removeItem('jwt');
+                await this.setState({isLoggedIn:false})
+            }
+           
+        }
+
+        await this.setState({
+            isLoading:false
+        })
+    }
 
 
     render() {
@@ -106,7 +142,7 @@ class Home extends Component {
 
                        <Grid item style={{paddingTop:'1%'}}>
                             {
-                               !this.state.questionGrid? <Name/> : <h2>sgdfhgfhfghfg</h2>
+                               !this.state.questionGrid? <Name checkIP={this.checkIP}/> : <h2>sgdfhgfhfghfg</h2>
                             }
                        </Grid>
 
@@ -114,6 +150,9 @@ class Home extends Component {
 
 
                 </Grid>
+                <Backdrop className={classes.backdrop} open={this.state.isLoading}>
+                        <CircularProgress/>
+                    </Backdrop>
             </div>
         )
     }

@@ -2,8 +2,14 @@ export default ({markup,css})=>{
     return `<!doctype html>
     <html lang="en">
     <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+        name="description"
+        content="Web site created using create-react-app"
+    />
+    <meta http-equiv="Content-Security-Policy" />
+     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">

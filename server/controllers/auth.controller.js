@@ -147,4 +147,21 @@ const signinAdmin=async(req,res)=>{
     }
 }
 
-export default {generateOTP,verifyOTP,sigin,requireSignin,hasAuthrization,siginDoctor,signinAdmin};
+const checkIP = async(req,res)=>{
+    try {
+        let Ip= req.body.ip;
+        let id=req.auth._id;
+        let user= await User.findById({_id:id});
+        console.log(user)
+        if(user.ip===Ip){
+            return res.status("200").json({message:"correct",isVerified:true})
+        }
+        else{
+            return res.status("200").json({message:"unauthorised",isVerified:false})
+        }
+    } catch (error) {
+        return res.status('500').json({error:errorHandler.getErrorMessage(err)});
+    }
+}
+
+export default {generateOTP,verifyOTP,sigin,requireSignin,hasAuthrization,siginDoctor,signinAdmin,checkIP};

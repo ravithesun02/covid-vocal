@@ -18,4 +18,19 @@ const uploadUserData = async(data)=>{
     }
 }
 
-export {uploadUserData};
+const checkJwt=async(data)=>{
+    try {
+        let res=await fetch(`${baseURL}/checkJwt`,{
+            method:'GET',
+            headers:{
+                'Authorization':'Bearer '+data
+            }
+        });
+
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export {uploadUserData,checkJwt};
