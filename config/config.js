@@ -11,3 +11,5 @@ const config={
 }
 
 export default config;
+
+//MONGODB_URI=mongodb+srv://pucho_db:znt66EFpFtiKIAOv@cluster0.2ssxl.mongodb.net/vocalcovid?retryWrites=true&w=majority
