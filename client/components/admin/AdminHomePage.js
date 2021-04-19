@@ -1,9 +1,10 @@
-import { Backdrop, Button, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography, withStyles } from '@material-ui/core';
+import { Backdrop, Button, Grid, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextareaAutosize, Typography, withStyles } from '@material-ui/core';
 import React , {Component} from 'react';
 import { Redirect } from 'react-router';
 import {getAllUsers,sendEmail} from '../../api/api-admin';
 import Header from '../HeaderComponent';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const useStyles =theme=>({
     root:{
@@ -42,7 +43,10 @@ class AdminHome extends Component{
             page:0,
             rowsPerPage:10,
             isLoading:false,
-            isLoggedIn:true
+            isLoggedIn:true,
+            preview:false,
+            previewData:null,
+            content:null
         }
     }
 
@@ -89,21 +93,42 @@ class AdminHome extends Component{
         });
     }
     
-    handleClick=async(id)=>{
+    handleClick=async(id,key)=>{
         await this.setState({
             isLoading:true
         });
-        let response=await sendEmail({_id:id});
+        let response=await sendEmail({_id:id,key:key,content:this.state.content});
 
         if(response.ok)
         {
             await this.getAllDetails();
 
             await this.setState({
-                isLoading:false
+                isLoading:false,
+                content:''
             });
         }
 
+    }
+
+    onEmailContentChange=async event=>{
+        await this.setState({
+            content:event.target.value
+        });
+        console.log(this.state.content);
+    }
+
+    handlePreview=async(data)=>{
+        await this.setState({
+            preview:true,
+            previewData:data
+        });
+    }
+
+    handleClose=()=>{
+        this.setState({
+            preview:false
+        })
     }
 
     render()
@@ -129,6 +154,14 @@ class AdminHome extends Component{
                                    <TableCell align="center">Name</TableCell>
                                    <TableCell align="center">Email</TableCell>
                                    <TableCell align="center">Phone No.</TableCell>
+                                   <TableCell align="center">Cough</TableCell>
+                                   <TableCell align="center">Chest Pain</TableCell>
+                                   <TableCell align="center">Fever</TableCell>
+                                   <TableCell align="center">Smoke</TableCell>
+                                   <TableCell align="center">Sneezing</TableCell>
+                                   <TableCell align="center">Dry Mouth</TableCell>
+                                   <TableCell align="center">RTPCR Report</TableCell>
+                                   <TableCell align="center">Chest Report</TableCell>
                                    <TableCell align="center">Authorized</TableCell>
                                    <TableCell align="center">Verify</TableCell>
                                </TableHead>
@@ -149,10 +182,39 @@ class AdminHome extends Component{
                                                     {item.phone}
                                                 </TableCell>
                                                 <TableCell align="center">
+                                                    {item.cough? "True":"False"}
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    {item.chest_pain? "True":"False"}
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    {item.fever? "True":"False"}
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    {item.smoke? "True":"False"}
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    {item.sneezing? "True":"False"}
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    {item.dry_mouth? "True":"False"}
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    <Button color="secondary" disabled={item.rtpcr === null ? true : false} variant="contained" onClick={()=>this.handlePreview(item.rtpcr)}>View</Button>
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    <Button color="secondary" disabled={item.chest_report === null ? true : false} variant="contained" onClick={()=>this.handlePreview(item.chest_report)}>View</Button>
+                                                </TableCell>
+                                                <TableCell align="center">
                                                     {item.isVerified ? "True":"False"}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                    <Button color="secondary" variant="contained" onClick={()=>this.handleClick(item._id)}>Send Email</Button>
+                                                <TextareaAutosize onChange={this.onEmailContentChange} aria-label="empty textarea" placeholder="Email Content" value={this.state.content} />
+                                                <Grid justify="space-around" direction="column">
+                                                <Button color="primary" variant="contained" style={{width:'50%'}} onClick={()=>this.handleClick(item._id,true)}>Send key</Button>
+                                                <Button color="secondary" variant="contained" style={{width:'50%'}} onClick={()=>this.handleClick(item._id,false)}>Send Email</Button>
+                                                </Grid>
+                                                    
                                                 </TableCell>
                                             </TableRow>
                                         )
@@ -186,6 +248,14 @@ class AdminHome extends Component{
                <Backdrop className={classes.backdrop} open={this.state.isLoading}>
                         <CircularProgress/>
                     </Backdrop>
+                <Backdrop className={classes.backdrop} open={this.state.preview} style={{overflow:'auto'}} onClick={this.handleClose}>
+                    
+                        <div>
+                        <img src={this.state.previewData} />
+                        </div>
+                    
+                    
+                </Backdrop>
            </div>
         )
     }

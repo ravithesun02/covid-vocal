@@ -13,6 +13,6 @@ router.route('/v1/predict/ai')
 .get(authCtrl.requireSignin,authCtrl.hasAuthrization,predictCtrl.predictCovid);
 
 router.route('/v1/predict/verify')
-.post(authCtrl.requireSignin,authCtrl.hasAuthrization,predictCtrl.verifyAudio,predictCtrl.uploadToDb);
+.post(authCtrl.requireSignin,authCtrl.hasAuthrization,predictCtrl.uploadToDb);
 
 export default router;

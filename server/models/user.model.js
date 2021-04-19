@@ -27,7 +27,15 @@ const UserSchema=mongoose.Schema({
     covid_doc:{
         type:String
     },
-    ip:String
+    ip:String,
+    cough:Boolean,
+    fever:Boolean,
+    sneezing:Boolean,
+    smoke:Boolean,
+    chest_pain:Boolean,
+    dry_mouth:Boolean,
+    rtpcr:String,
+    chest_report:String
 },{
     timestamps:true
 });

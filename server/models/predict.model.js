@@ -27,26 +27,6 @@ var AudioSample=mongoose.Schema({
 });
 
 var PredictSchema=mongoose.Schema({
-    name:{
-        type:String,
-        trim:true,
-        required:'Name is required'
-    },
-    cough:{
-        type:Boolean
-    },
-    chest_pain:{
-        type:Boolean
-    },
-    sneezing:{
-        type:Boolean
-    },
-    fever:{
-        type:Boolean
-    },
-    smoke:{
-        type:Boolean
-    },
     audio_sample:AudioSample
 },{
     timestamps:true

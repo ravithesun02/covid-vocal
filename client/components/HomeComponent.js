@@ -46,7 +46,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state={
-            questionGrid:true,
+            questionGrid:false,
             isLoggedIn:true,
             isLoading:false
         }
@@ -136,7 +136,8 @@ class Home extends Component {
                       
                        <Grid item style={{marginTop:'1%'}}>
                         <Paper className={classes.paper}>
-                            Upload your details <Switch checked={this.state.questionGrid} onChange={()=>this.setState({questionGrid:!this.state.questionGrid})}/> Get your details
+                            Upload your details
+                            {/* Upload your details <Switch checked={this.state.questionGrid} onChange={()=>this.setState({questionGrid:!this.state.questionGrid})}/> Get your details */}
                         </Paper>
                        </Grid>
 

@@ -36,19 +36,27 @@ const sendEmail=async(req,res)=>{
 
     try
     {
+        console.log(req.body);
         let id=req.body._id;
+        let key=req.body.key;
+        let content=req.body.content;
 
         let user=await User.findOne({_id:id});
 
         let emailTo=user.emailId;
         const token=jwt.sign({_id:id},config.jwtSecret);
 
-        let sent=await mailer.sendEmail(emailTo,token);
+        let passcode=`Please do not share this code with anyone . Please enter this code \n ${token}` ;
+
+        let emailContent=`${content}.\n\n ${key ? passcode:''}`;
+
+        let sent=await mailer.sendEmail(emailTo,emailContent);
 
         console.log(sent);
 
         if(sent.messageId)
         {
+            if(key)
             await User.findByIdAndUpdate({_id:id},{isVerified:true});
 
             return res.status('200').json({message:'Mail sent'});

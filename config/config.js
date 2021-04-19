@@ -7,7 +7,17 @@ const config={
     accountSID:process.env.accountSID,
     authToken:process.env.authToken,
     emailFrom:"ravi.kumar8927395664@gmail.com",
-    password:"Ravi@8927"
+    password:"Ravi@8927",
+     firebaseConfig : {
+        apiKey: "AIzaSyBAt4f7uMKcZ6IZtDKooqctg03g2Gqmt_Q",
+        authDomain: "pucho-life-sciences-inc.firebaseapp.com",
+        projectId: "pucho-life-sciences-inc",
+        storageBucket: "pucho-life-sciences-inc.appspot.com",
+        messagingSenderId: "532383597848",
+        appId: "1:532383597848:web:4ec0e0a064c7b04b898a6d",
+        measurementId: "G-L6MCXEW9K6"
+      },
+    GCP_KEY:"AIzaSyBAt4f7uMKcZ6IZtDKooqctg03g2Gqmt_Q"
 }
 
 export default config;

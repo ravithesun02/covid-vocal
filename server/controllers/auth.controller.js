@@ -7,7 +7,7 @@ import Doctor from '../models/doctor.model';
 import Admin from '../models/admin.model';
 
 
-const client=require('twilio')(config.accountSID,config.authToken);
+
 
 
 const generateOTP=async(req,res)=>{
@@ -31,22 +31,22 @@ const generateOTP=async(req,res)=>{
 
 };
 
-const verifyOTP=(req,res,next)=>{
-    let phone=req.body.phone;
-    client.verify.services(config.serviceID).verificationChecks.create({
-        to:phone,
-        code:req.body.code
-    })
-    .then((data)=>{
-        console.log(data);
-       next();
-    })
-    .catch((err)=>{
-        console.log(err);
-        return res.status('404').json({message:'Wrong OTP.Please Retry.'});
-    })
+// const verifyOTP=(req,res,next)=>{
+//     let phone=req.body.phone;
+//     client.verify.services(config.serviceID).verificationChecks.create({
+//         to:phone,
+//         code:req.body.code
+//     })
+//     .then((data)=>{
+//         console.log(data);
+//        next();
+//     })
+//     .catch((err)=>{
+//         console.log(err);
+//         return res.status('404').json({message:'Wrong OTP.Please Retry.'});
+//     })
 
-}
+// }
 
 const sigin=async(req,res)=>{
     try{
@@ -164,4 +164,4 @@ const checkIP = async(req,res)=>{
     }
 }
 
-export default {generateOTP,verifyOTP,sigin,requireSignin,hasAuthrization,siginDoctor,signinAdmin,checkIP};
+export default {generateOTP,sigin,requireSignin,hasAuthrization,siginDoctor,signinAdmin,checkIP};

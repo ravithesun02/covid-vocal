@@ -8,7 +8,7 @@ router.route('/login/:phone')
 .get(authCtrl.generateOTP);
 
 router.route('/login/verify')
-.post(authCtrl.verifyOTP,userCtrl.checkUser);
+.post(userCtrl.checkUser);
 
 router.route('/checkIP')
 .post(authCtrl.requireSignin,authCtrl.hasAuthrization,authCtrl.checkIP)

@@ -42,7 +42,7 @@ const getAllUsers=async()=>{
 
 const sendEmail=async(data)=>{
     
-   // console.log(data);
+   console.log(data);
 
     try {
         let res=await fetch(`${baseURL}/sendMail`,{

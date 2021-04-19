@@ -46,11 +46,12 @@ class Name extends React.Component {
                 chest_pain:false,
             },
             nameError:false,
-            questionGrid:true,
+            questionGrid:false,
             covid:null,
             isLoading:false,
             isVerified:false,
-            isSubmitDisabled:true
+            isSubmitDisabled:true,
+            success:false
         };
 
     }
@@ -91,7 +92,6 @@ await this.setState({
     isLoading:true
 })
 
-   senduserData=this.state.formdata;
    senduserData['audio_sample']=audio_samples;
 
    console.log(senduserData);
@@ -100,27 +100,31 @@ await this.setState({
 
   if(response.ok)
   {
-      let data=await response.json();
+    //   let data=await response.json();
 
-      let msg=data.message;
+    //   let msg=data.message;
 
-      if(typeof msg === 'string')
-      {
-          let arr=[];
-          this.child.current.handleErrorMsg(arr);
-        alert(msg);
-        await this.setState({
-            isVerified:true
-        });
-      }
-      else
-      {
-          console.log(msg);
-          this.child.current.handleErrorMsg(msg);
-      }
+    //   if(typeof msg === 'string')
+    //   {
+    //       let arr=[];
+    //       this.child.current.handleErrorMsg(arr);
+    //     alert(msg);
+    //     await this.setState({
+    //         isVerified:true
+    //     });
+    //   }
+    //   else
+    //   {
+    //       console.log(msg);
+    //       this.child.current.handleErrorMsg(msg);
+    //   }
+
+    let data=await response.json();
+    
 
      await this.setState({
-          isLoading:false
+          isLoading:false,
+          success:true
       });
   }
   else
@@ -217,13 +221,13 @@ await this.setState({
                 <div>
                 <Grid container direction="column">
                     <Grid item>
-                       {this.state.covid ? <h2>Your covid probability is : {this.state.covid}</h2> : <AudioDisplay startLoading={this.startLoading} stopLoading={this.stopLoading} enableBtn={this.enableVerifyBtn} ref={this.child}/>}
+                       {this.state.success ? <h2>Your data has been submitted successfully</h2> : <AudioDisplay startLoading={this.startLoading} stopLoading={this.stopLoading} enableBtn={this.enableVerifyBtn} ref={this.child}/>}
 
                     </Grid>
-                  {!this.state.covid &&  
-                  <Grid item justify="space-between" container>
-                    <Button variant="contained" color="primary" onClick={()=>this.setState({questionGrid:true})}>back</Button>
-                    <Button variant="contained" color="primary" disabled={this.state.isSubmitDisabled} onClick={this.state.isVerified ? this.handlePredictData  :this.handleDataSubmit}>{this.state.isVerified?'submit':'verify'}</Button>
+                  {!this.state.success &&  
+                  <Grid item justify="flex-end" container>
+                    {/* <Button variant="contained" color="primary" onClick={()=>this.setState({questionGrid:true})}>back</Button> */}
+                    <Button variant="contained" color="primary" disabled={this.state.isSubmitDisabled} onClick={this.handleDataSubmit}>submit</Button>
                     </Grid>
                     }
                 </Grid>

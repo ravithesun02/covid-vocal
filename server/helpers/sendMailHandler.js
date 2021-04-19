@@ -11,12 +11,12 @@ var transporter=nodeMailer.createTransport({
     }
 });
 
-const sendEmail=async(emailTo,token)=>{
+const sendEmail=async(emailTo,content)=>{
     var mailOptions={
         from:config.emailFrom,
         to:emailTo,
         subject:"Verification code for PuchoLifeScience Access",
-        text:`Please do not share this code with anyone . Please enter this code \n ${token}`    
+        text:content  
     };
 
    let info= await transporter.sendMail(mailOptions);
