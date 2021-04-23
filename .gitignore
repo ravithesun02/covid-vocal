@@ -3,3 +3,5 @@ dist
 audio_samples
 public
 prenv
+cert.pem
+key.pem
