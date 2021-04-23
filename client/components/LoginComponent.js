@@ -4,9 +4,12 @@ import {
     TextField,
     MenuItem,
     Button,
-    IconButton
+    IconButton,
+    withStyles
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Switch , Backdrop } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Otp from './Otp';
 
@@ -21,8 +24,15 @@ function isNumeric(n) {
     return !isNaN(parseInt(n)) && isFinite(n);
 }
 
+const useStyles =theme=>({
+    backdrop: {
+        zIndex:  100,
+        color: '#fff',
+      }
+    
+});
 let recaptchaVerifier;
-export default class Login extends React.Component {
+ class Login extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -32,7 +42,8 @@ export default class Login extends React.Component {
             otp: '',
             loggedIn:false,
             redirectTo:null,
-            recaptchaToken:null
+            recaptchaToken:null,
+            isLoading:false
         };
     }
 
@@ -98,6 +109,7 @@ this.setUpRecaptcha();
             let res=await response.json();
 
            await this.setState({
+               isLoading:false,
                redirectTo:res.redirect
            })
 
@@ -109,6 +121,9 @@ this.setUpRecaptcha();
     }
 
     _verifyCode = async () => {
+        await this.setState({
+            isLoading:true
+        });
         const e = this.state.code+this.state.pno;
         const otp=this.state.otp;
         window.confirmationResult.confirm(otp).then(async(result) => {
@@ -123,6 +138,7 @@ this.setUpRecaptcha();
     }
   
     render(){
+        const {classes}=this.props;
         const height = this.state.height-65;
         if(this.state.loggedIn)
             return(
@@ -205,7 +221,12 @@ this.setUpRecaptcha();
                     </div>
                     <div style={{display:`${this.state.otpShow ? 'none':'block'}`}} id="recaptcha-container"></div>
                 </Paper>
+                <Backdrop className={classes.backdrop} open={this.state.isLoading}>
+                        <CircularProgress/>
+                    </Backdrop>
             </div>
         );
     }
 }
+
+export default withStyles(useStyles)(Login);
