@@ -46,7 +46,7 @@ class AdminHome extends Component{
             isLoggedIn:true,
             preview:false,
             previewData:null,
-            content:null
+            content:{}
         }
     }
 
@@ -97,7 +97,7 @@ class AdminHome extends Component{
         await this.setState({
             isLoading:true
         });
-        let response=await sendEmail({_id:id,key:key,content:this.state.content});
+        let response=await sendEmail({_id:id,key:key,content:this.state.content[id]});
 
         if(response.ok)
         {
@@ -105,15 +105,21 @@ class AdminHome extends Component{
 
             await this.setState({
                 isLoading:false,
-                content:''
+                ...this.state.content,
+                content:{
+                    [id]:''
+                }
             });
         }
 
     }
 
-    onEmailContentChange=async event=>{
+    onEmailContentChange=id=>async event=>{
         await this.setState({
-            content:event.target.value
+            ...this.state.content,
+            content:{
+                [id]:event.target.value
+            }
         });
         console.log(this.state.content);
     }
@@ -209,7 +215,7 @@ class AdminHome extends Component{
                                                     {item.isVerified ? "True":"False"}
                                                 </TableCell>
                                                 <TableCell align="center">
-                                                <TextareaAutosize onChange={this.onEmailContentChange} aria-label="empty textarea" placeholder="Email Content" value={this.state.content} />
+                                                <TextareaAutosize onChange={this.onEmailContentChange(item._id)} aria-label="empty textarea" placeholder="Email Content" value={this.state.content[item._id]} />
                                                 <Grid justify="space-around" direction="column">
                                                 <Button color="primary" variant="contained" style={{width:'50%'}} onClick={()=>this.handleClick(item._id,true)}>Send key</Button>
                                                 <Button color="secondary" variant="contained" style={{width:'50%'}} onClick={()=>this.handleClick(item._id,false)}>Send Email</Button>
