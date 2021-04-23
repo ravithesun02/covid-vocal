@@ -6,8 +6,8 @@ const config={
     serviceID:process.env.serviceID,
     accountSID:process.env.accountSID,
     authToken:process.env.authToken,
-    emailFrom:"ravi.kumar8927395664@gmail.com",
-    password:"Ravi@8927",
+    emailFrom:"pucho-covid19.trials@pucho.ai",
+    password:"0L5p3EJF8iL3",
      firebaseConfig : {
         apiKey: "AIzaSyBAt4f7uMKcZ6IZtDKooqctg03g2Gqmt_Q",
         authDomain: "pucho-life-sciences-inc.firebaseapp.com",

@@ -2,7 +2,7 @@ import nodeMailer from 'nodemailer';
 import config from '../../config/config';
 
 var transporter=nodeMailer.createTransport({
-    host:"smtp.gmail.com",
+    host:"smtp.zoho.com",
     port: 587,
     secure: false,
     auth:{
