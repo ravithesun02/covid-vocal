@@ -1,8 +1,6 @@
 import config from './../config/config'
 import app from './express'
 import mongoose from 'mongoose'
-import https from 'https'
-import fs from 'fs'
 
 // Connection URL
 mongoose.Promise = global.Promise
@@ -10,11 +8,7 @@ mongoose.connect(config.mongoUri, { useNewUrlParser: true, useCreateIndex: true,
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${config.mongoUri}`)
 })
-https.createServer({
-  key: fs.readFileSync('./key.pem'),
-  cert: fs.readFileSync('./cert.pem'),
-  passphrase: 'Ravi@8927'
-},app).listen(config.port, (err) => {
+app.listen(config.port, (err) => {
   if (err) {
     console.log(err)
   }
