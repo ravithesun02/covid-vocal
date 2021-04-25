@@ -13,7 +13,7 @@ import UserVerifiedComponent from './auth/UserVerifiedComponent';
 import AdminLoginComponent from './admin/AdminLoginComponent';
 import AdminPrivateRoute from '../reusable/AdminPrivateRoute';
 import AdminHome from './admin/AdminHomePage';
-
+import HomeDetail from '../reusable/HomeDetailComponent';
 
 class MainRouter extends Component{
 
@@ -22,7 +22,9 @@ class MainRouter extends Component{
         return(
             <div>
             <Switch>
-                <Route exact path="/" component={Login}/>
+                <Route exact path="/" component={HomeDetail}/>
+                <Route exact path="/signIn" component={Login}/>
+                <Route exact path="/details" component={HomeDetail}/>
                 <PrivateRoute path="/home" component={HomeComponent}/>
                 <Route path="/doc" component={DocLogin}/>
                 <DocPrivateRoute path="/doc_home" component={DocHome}/>

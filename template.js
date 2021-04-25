@@ -6,14 +6,14 @@ export default ({markup,css})=>{
     <meta name="theme-color" content="#000000" />
     <meta
         name="description"
-        content="Web site created using create-react-app"
+        content="Pucho Vocal by pucho.ai"
     />
     <meta http-equiv="Content-Security-Policy" />
      <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
-    <title>MERN Kickstart</title>
+    <title>Pucho Vocal</title>
     </head>
     <body>
     <div id="root">

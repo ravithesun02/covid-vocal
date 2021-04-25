@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
 import Name from "./questions/FormComponent";
-import { Switch , Backdrop } from '@material-ui/core';
+import { Switch , Backdrop , Typography} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import {checkIP} from '../api/api-auth';
 import {getIP} from '../api/ip-getter';
@@ -126,12 +126,22 @@ class Home extends Component {
                        <Grid item>
                            <Paper className={classes.paper} elevation={3}>
                                <h2>Record your voice to help AI beat Covid!</h2>
-                               <p>Carnegie Mellon University is collaborating with researchers around the world to develop an automated AI system that can detect signatures of Covid-19 infection in the human voice.
-
-                                   In order to build the system we require a large number of voice samples -- from Covid patients, from healthy people, and from people affected by other ailments.
-
-                                   Please sign in and record your voice, to contribute to this effort</p>
-                           </Paper>
+                               <Typography variant="h6">
+                               Pucho Inc. is an AI-based HealthTech/Digital health start-up.
+                               <br/>
+                                Our team consists of people having relevant deep expertise in Diagnostic , AI , and strategic partnerships.
+                                <br/>
+                                Pucho Inc. has developed Vocal Biomarkers for rapid covid-19 screening to ensure real-time screening of covid-19 patients , primarily asymptomatic.
+                               </Typography>
+                               <h2>About Pucho Vocal</h2>
+                               <Typography variant="h6">
+                                It is a rapid Covid-19 screening platform to screen Covid patients anywhere and anytime.
+                                <br/>
+                                We have achieved 80 % accuracy in the internal development. Now we are pushing to validation and clinical trials in India and other countries.
+                                <br/>
+                                Our platform ensures : Highest standard of Data privacy (GDPR compliant ) & noise resistance.
+                               </Typography>
+                               </Paper>
                        </Grid>
                       
                        <Grid item style={{marginTop:'1%'}}>

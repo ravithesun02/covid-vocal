@@ -162,7 +162,7 @@ this.setUpRecaptcha();
                 height: '100vh'
             }}>
                 <Paper elevation={4} style={{ padding: 20, width: 300, marginBottom: 60}}>
-                    {!this.state.otpShow ? <h3 style={{marginLeft: 10, color: '#9f9f9f'}}>αlpha</h3> : <IconButton onClick={() => {
+                    {!this.state.otpShow ? <h3 style={{marginLeft: 10, color: '#9f9f9f'}}>Login/ Signup</h3> : <IconButton onClick={() => {
                         this.setState({otpShow: false, otp: ''});
                     }} size="small"><ArrowBackIcon /></IconButton>}
                     {!this.state.otpShow ? <h3>Enter your Phone Number</h3> : <h3>Enter the OTP</h3> }
