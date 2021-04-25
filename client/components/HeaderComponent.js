@@ -70,19 +70,27 @@ class Header extends Component {
         if(typeof window !== 'undefined')
         {
             let pathname=window.location.pathname;
-
-            if(pathname==='/home')
-                auth.clearJWT('jwt',()=>{
-                    console.log('signed out');
-                })
-            else if(pathname==='/doc_home')
+            auth.clearJWT('jwt',()=>{
+                console.log('signed out');
+            });
             auth.clearJWT('doc_jwt',()=>{
                 console.log('signed out');
-            })
-            else if(pathname==="/admin_home")
+            });
             auth.clearJWT('admin_jwt',()=>{
                 console.log('signed out');
-            })
+            });
+            // if(pathname==='/home')
+            //     auth.clearJWT('jwt',()=>{
+            //         console.log('signed out');
+            //     })
+            // else if(pathname==='/doc_home')
+            // auth.clearJWT('doc_jwt',()=>{
+            //     console.log('signed out');
+            // })
+            // else if(pathname==="/admin_home")
+            // auth.clearJWT('admin_jwt',()=>{
+            //     console.log('signed out');
+            // })
             await this.setState({
                 redirectTo:true
             })
@@ -97,9 +105,13 @@ class Header extends Component {
                 <Redirect to="/home"/>
             )
         if(this.state.redirectTo)
-            return(
-                <Redirect to="/"/>
-            )
+            {
+               if(this.state.detailsBtn)
+                    window.location.reload();
+                return(
+                    <Redirect to="/"/>
+                )
+            }
         return(
             <React.Fragment>
                 <CssBaseline/>
