@@ -1,9 +1,14 @@
-import { AppBar, Typography, withStyles, Button, Grid, Paper, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { AppBar, Typography, withStyles, Button, Grid, Paper, List, ListItem, ListItemIcon, ListItemText, Card, CardMedia, CardContent } from '@material-ui/core';
 import React , {Component} from 'react';
 import Header from '../components/HeaderComponent';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import auth from '../api/auth-helper';
 import { Redirect } from 'react-router';
+import first from './../assests/images/7.jpg'
+import second from './../assests/images/8.jpg'
+import third from './../assests/images/9.jpg'
+import fourth from './../assests/images/10.jpg'
+import fifth from './../assests/images/11.jpg'
 const useStyles=theme=>({
     root:{
         flexGrow:1,
@@ -21,6 +26,17 @@ const useStyles=theme=>({
     midGrid:{
         padding:'2%',
         justify:'space-evenly'
+    },
+    media:{
+        minHeight:'100vh'
+    },
+    card:{
+        maxWidth:'100%',
+        margin:'auto',
+        marginTop:'1%',
+        minHeight:'20vh',
+        textAlign:'center',
+        backgroundColor:'#C9EDC9'
     }
 })
 
@@ -241,6 +257,31 @@ class HomeDetail extends Component{
                                 </List>
 
                             </Paper>
+                            <Card className={classes.card}>
+                                <CardContent>
+                                    <img src={first} width='50%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={second} width='50%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={third} width='50%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={fourth} width='50%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={fifth} width='50%' height='50%' />
+                                </CardContent>
+                            </Card>
                         </Grid>
                     </Grid>
                 </Grid>
