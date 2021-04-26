@@ -4,11 +4,17 @@ import Header from '../components/HeaderComponent';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import auth from '../api/auth-helper';
 import { Redirect } from 'react-router';
-import first from './../assests/images/7.jpg'
-import second from './../assests/images/8.jpg'
-import third from './../assests/images/9.jpg'
-import fourth from './../assests/images/10.jpg'
-import fifth from './../assests/images/11.jpg'
+import first from './../assests/images/1.png'
+import second from './../assests/images/2.png'
+import third from './../assests/images/3.png'
+import fourth from './../assests/images/4.png'
+import fifth from './../assests/images/5.png'
+import sixth from './../assests/images/6.png'
+import seventh from './../assests/images/7.jpg'
+import eighth from './../assests/images/8.jpg'
+import ninth from './../assests/images/9.jpg'
+import tenth from './../assests/images/10.jpg'
+import eleventh from './../assests/images/11.jpg'
 const useStyles=theme=>({
     root:{
         flexGrow:1,
@@ -74,7 +80,7 @@ class HomeDetail extends Component{
                     </Grid>
                     <Grid direction="column"  item container className={classes.midGrid}>
                         <Grid item>
-                            <Paper className={classes.paper} elevation={3}>
+                            {/* <Paper className={classes.paper} elevation={3}>
                                <Typography variant="h6">
                                Pucho Inc. is an AI-based HealthTech/Digital health start-up.
                                <br/>
@@ -256,30 +262,61 @@ class HomeDetail extends Component{
                                     </ListItem>
                                 </List>
 
-                            </Paper>
+                            </Paper> */}
+
                             <Card className={classes.card}>
                                 <CardContent>
-                                    <img src={first} width='50%' height='50%' />
+                                    <img src={first} width='100%' height='50%' />
                                 </CardContent>
                             </Card>
                             <Card className={classes.card}>
                             <CardContent>
-                                    <img src={second} width='50%' height='50%' />
+                                    <img src={second} width='100%' height='50%' />
                                 </CardContent>
                             </Card>
                             <Card className={classes.card}>
                             <CardContent>
-                                    <img src={third} width='50%' height='50%' />
+                                    <img src={third} width='100%' height='50%' />
                                 </CardContent>
                             </Card>
                             <Card className={classes.card}>
                             <CardContent>
-                                    <img src={fourth} width='50%' height='50%' />
+                                    <img src={fourth} width='100%' height='50%' />
                                 </CardContent>
                             </Card>
                             <Card className={classes.card}>
                             <CardContent>
-                                    <img src={fifth} width='50%' height='50%' />
+                                    <img src={fifth} width='100%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={sixth} width='100%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={seventh} width='100%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={eighth} width='100%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={ninth} width='100%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={tenth} width='100%' height='50%' />
+                                </CardContent>
+                            </Card>
+                            <Card className={classes.card}>
+                            <CardContent>
+                                    <img src={eleventh} width='100%' height='50%' />
                                 </CardContent>
                             </Card>
                         </Grid>
